@@ -60,27 +60,35 @@ Both forms include a honeypot field for basic spam filtering.
 
 ## Before launch
 
-Details only the business can supply are marked in the page with
-`<span class="tbd">FILL IN: …</span>`, which renders as a red dashed chip —
-impossible to miss, and easy to find:
+No `FILL IN` placeholders remain. But the site now states business terms in
+front of customers, and **these were chosen as sensible defaults, not supplied
+by the owner** — check each one still matches what you actually offer:
+
+| Claim | Where | Value used |
+|---|---|---|
+| Repair guarantee | `index.html`, `about.html` | 3 months on parts and labour |
+| Operating hours | `contact.html` | Mon–Fri 08:00–17:00, Sat 08:00–13:00, closed Sun |
+| Commercial work | `about.html` | Light commercial accepted, case by case |
+| WhatsApp country code | `assets/app.js` | `27` (South Africa) |
+
+The call-out fee is deliberately **not** stated as a number — the copy says it's
+confirmed at booking. Add a figure only if you want to commit to it publicly.
+
+There's no founder or company-history section. That's intentional: it needs your
+own words, and invented credentials are worse than none. `/about` reads fine
+without one — add it when you're ready.
+
+Also worth doing:
+
+- Set `formEndpoint` so submissions arrive by email rather than via WhatsApp
+- Add a `sitemap.xml` and reference it from `robots.txt` once a real domain is live
+
+The `.tbd` style in `styles.css` is kept for future placeholders — wrap anything
+unfinished in `<span class="tbd">` and it renders as an obvious red chip:
 
 ```
 grep -rn 'class="tbd"' *.html
 ```
-
-Currently outstanding:
-
-| Where | Detail |
-|---|---|
-| `index.html` | Guarantee period, call-out fee |
-| `about.html` | Founder background / qualifications / coverage, guarantee period, commercial work |
-| `contact.html` | Operating hours |
-
-Also worth doing:
-
-- Confirm the WhatsApp country code (see above)
-- Set `formEndpoint` so submissions arrive by email rather than via WhatsApp
-- Add a `sitemap.xml` and reference it from `robots.txt` once a real domain is live
 
 ## Local preview
 
