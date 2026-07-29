@@ -15,10 +15,16 @@ const CONFIG = {
   // Set this to '' and every WhatsApp button quietly falls back to a phone call.
   whatsapp: '27686851537',
 
-  // Paste a Formspree ('https://formspree.io/f/xxxxxxxx') or Web3Forms endpoint here
-  // to receive form submissions by email. While it's empty, the booking form falls
-  // back to the WhatsApp/phone handoff instead of silently discarding the request.
-  formEndpoint: ''
+  // Where form submissions are emailed. Currently Web3Forms.
+  // Set to '' and the forms fall back to the WhatsApp/phone handoff instead of
+  // silently discarding the request.
+  formEndpoint: 'https://api.web3forms.com/submit',
+
+  // Web3Forms access key. This is public by design — it ships in client-side
+  // JavaScript and is safe to commit. It only permits submissions to the inbox
+  // it was issued for. Leave empty for providers that key off the URL alone
+  // (Formspree, Getform, Basin).
+  formAccessKey: '9677b1f9-bb03-47ca-a1df-e2d799cb8c86'
 };
 
 /* ---------- helpers ---------- */
@@ -122,13 +128,37 @@ function formToMessage(form, heading){
   return lines.join('\n');
 }
 
-async function postToEndpoint(form){
+async function postToEndpoint(form, heading){
+  const data = new FormData(form);
+
+  // The honeypot is only useful to us — don't clutter the notification email.
+  data.delete('_gotcha');
+
+  if (CONFIG.formAccessKey) data.append('access_key', CONFIG.formAccessKey);
+
+  // Give the email a useful subject. The contact form supplies its own via the
+  // "subject" select, so only fall back to the form's heading when it's absent.
+  if (!data.get('subject')) data.append('subject', heading);
+  data.append('from_name', 'FixPro website');
+
+  // So hitting reply in the inbox goes straight back to the customer.
+  const email = data.get('email');
+  if (email) data.append('replyto', email);
+
   const res = await fetch(CONFIG.formEndpoint, {
     method: 'POST',
     headers: { 'Accept': 'application/json' },
-    body: new FormData(form)
+    body: data
   });
-  if (!res.ok) throw new Error('Request failed with status ' + res.status);
+
+  // Web3Forms answers 200 with {success:false} on a rejected submission,
+  // so the status code alone isn't enough.
+  let body = {};
+  try { body = await res.json(); } catch (e) { /* non-JSON provider */ }
+
+  if (!res.ok || body.success === false){
+    throw new Error(body.message || 'Request failed with status ' + res.status);
+  }
 }
 
 function initForms(){
@@ -186,7 +216,7 @@ function initForms(){
       say('Sending your request…', 'ok');
 
       try {
-        await postToEndpoint(form);
+        await postToEndpoint(form, heading);
         form.reset();
         say('Thanks — your request is in. We\'ll be in touch shortly to confirm a time.', 'ok');
       } catch (err) {

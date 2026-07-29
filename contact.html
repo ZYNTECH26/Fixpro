@@ -68,7 +68,10 @@
             </p>
           </div>
 
-          <form class="form" data-form data-message-heading="New enquiry from the FixPro contact page">
+          <!-- novalidate: our own validation runs on submit and shows inline
+               errors. Without it the browser's native bubbles fire first and
+               the submit event never reaches us. -->
+          <form class="form" novalidate data-form data-message-heading="New enquiry from the FixPro contact page">
             <div class="form-row">
               <div class="field">
                 <label for="name">Your name <span class="req">*</span></label>

@@ -48,15 +48,27 @@ messages will go nowhere — replace `27` with the correct country code (e.g.
 Set it to `''` and every WhatsApp button falls back to a phone call and
 relabels itself, so nothing breaks.
 
-### `formEndpoint`
+### `formEndpoint` / `formAccessKey`
 
-Paste a [Formspree](https://formspree.io) (`https://formspree.io/f/xxxxxxxx`) or
-[Web3Forms](https://web3forms.com) endpoint to receive submissions by email.
+Submissions go to [Web3Forms](https://web3forms.com), which emails them to the
+address the access key was issued for.
 
-While it's empty, submitting a form opens WhatsApp with the answers formatted
-as a message, so requests still reach you rather than being silently discarded.
+The access key is **public by design** — it ships in client-side JavaScript, and
+is safe to commit. It only allows submissions to its own inbox.
 
-Both forms include a honeypot field for basic spam filtering.
+`postToEndpoint()` adds `access_key`, a `subject`, `from_name`, and a `replyto`
+taken from the customer's email address, so replying in your inbox goes straight
+back to them. The honeypot value is stripped before sending.
+
+Swapping providers: for Formspree, Getform or Basin, put their URL in
+`formEndpoint` and set `formAccessKey` to `''` — they key off the URL alone.
+
+If the endpoint errors, the form falls back to the WhatsApp handoff rather than
+losing the request. Set `formEndpoint` to `''` to use that path deliberately.
+
+Both forms use `novalidate` so the custom inline validation in `app.js` runs;
+without it the browser's native bubbles fire first and the submit handler never
+sees the event.
 
 ## Before launch
 
@@ -80,7 +92,10 @@ without one — add it when you're ready.
 
 Also worth doing:
 
-- Set `formEndpoint` so submissions arrive by email rather than via WhatsApp
+- **Send one real booking through the deployed site and confirm the email
+  arrives.** The payload has been verified field by field, but Web3Forms sits
+  behind Cloudflare, which challenges automated requests — so end-to-end
+  delivery has not been confirmed from a live browser.
 - Add a `sitemap.xml` and reference it from `robots.txt` once a real domain is live
 
 The `.tbd` style in `styles.css` is kept for future placeholders — wrap anything

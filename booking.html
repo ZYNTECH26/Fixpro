@@ -67,7 +67,10 @@
             </p>
           </div>
 
-          <form class="form" data-form data-message-heading="New repair booking from the FixPro website">
+          <!-- novalidate: our own validation runs on submit and shows inline
+               errors. Without it the browser's native bubbles fire first and
+               the submit event never reaches us. -->
+          <form class="form" novalidate data-form data-message-heading="New repair booking from the FixPro website">
 
             <fieldset>
               <legend class="eyebrow" style="margin-bottom:16px;">Your details</legend>
