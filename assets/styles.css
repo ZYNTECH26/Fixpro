@@ -314,10 +314,39 @@ legend{ font-size:13.5px; font-weight:600; padding:0; margin-bottom:7px; }
 }
 
 /* ---------- placeholder marker ---------- */
-/* Wraps copy the business still needs to supply. Search "tbd" before launch. */
+/* Wraps a detail the business still has to supply. Deliberately loud so it
+   can't ship by accident: grep for 'class="tbd"' before going live. */
 .tbd{
-  border-bottom:1px dashed rgba(255,138,128,0.55);
-  cursor:help;
+  display:inline-block;
+  background:rgba(255,138,128,0.13);
+  border:1px dashed rgba(255,138,128,0.6);
+  border-radius:5px;
+  padding:0 7px;
+  color:#FFB3AC;
+  font-size:.93em;
+  font-weight:600;
+  font-family:var(--mono);
+  letter-spacing:.02em;
+}
+
+/* ---------- floating WhatsApp button ---------- */
+
+.wa-float{
+  position:fixed; right:22px; bottom:22px; z-index:60;
+  display:inline-flex; align-items:center; gap:10px;
+  background:#25D366; color:#0A2E1A;
+  font-weight:700; font-size:14.5px; text-decoration:none;
+  padding:14px 20px; border-radius:999px;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,0.65);
+  transition:transform .15s ease, background .15s ease;
+}
+.wa-float:hover{ background:#1FBE5A; color:#0A2E1A; transform:translateY(-2px); }
+.wa-float svg{ width:22px; height:22px; flex-shrink:0; }
+
+@media (max-width:560px){
+  /* Shrink to a circle so it doesn't cover the page on small screens. */
+  .wa-float{ right:16px; bottom:16px; padding:15px; border-radius:50%; }
+  .wa-float span{ display:none; }
 }
 
 /* ---------- responsive ---------- */

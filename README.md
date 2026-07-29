@@ -25,50 +25,62 @@ Everything you'd realistically want to change is at the top of
 
 ```js
 const CONFIG = {
-  phone: '0686851530',
-  whatsapp: '',      // full international number, digits only
-  formEndpoint: ''   // Formspree / Web3Forms URL
+  phone: '0686851537',
+  whatsapp: '27686851537',
+  formEndpoint: ''
 };
 ```
+
+### `phone`
+
+Used for `tel:` links. Displayed on the pages as `068 685 1537`.
 
 ### `whatsapp`
 
 Must be the **full international number** — country code, digits only, no
-leading zero and no `+`. A South African `068 685 1530` becomes `27686851530`;
-a Dutch `06 8685 1530` becomes `31686851530`.
+leading zero and no `+`.
 
-While it's empty every WhatsApp button falls back to a phone call and relabels
-itself, so nothing on the site is broken — it just isn't offering WhatsApp yet.
+`27` is the South African dialling code, chosen to match the `068 685 1537`
+number format. **If FixPro is not in South Africa this is wrong** and WhatsApp
+messages will go nowhere — replace `27` with the correct country code (e.g.
+`31` for the Netherlands, giving `31686851537`).
+
+Set it to `''` and every WhatsApp button falls back to a phone call and
+relabels itself, so nothing breaks.
 
 ### `formEndpoint`
 
 Paste a [Formspree](https://formspree.io) (`https://formspree.io/f/xxxxxxxx`) or
 [Web3Forms](https://web3forms.com) endpoint to receive submissions by email.
 
-While it's empty, submitting a form opens WhatsApp (or the phone dialler) with
-the answers formatted as a message, so requests still reach you rather than
-being silently discarded.
+While it's empty, submitting a form opens WhatsApp with the answers formatted
+as a message, so requests still reach you rather than being silently discarded.
 
 Both forms include a honeypot field for basic spam filtering.
 
 ## Before launch
 
-The phone number is real; some business details are not filled in. Anything
-still outstanding is wrapped in `<span class="tbd">`, which renders with a
-dashed red underline so it's visible on the page:
+Details only the business can supply are marked in the page with
+`<span class="tbd">FILL IN: …</span>`, which renders as a red dashed chip —
+impossible to miss, and easy to find:
 
 ```
 grep -rn 'class="tbd"' *.html
 ```
 
-Currently that covers the guarantee period, the call-out fee, operating hours,
-whether you take commercial work, and the "about us" background on `/about`.
+Currently outstanding:
+
+| Where | Detail |
+|---|---|
+| `index.html` | Guarantee period, call-out fee |
+| `about.html` | Founder background / qualifications / coverage, guarantee period, commercial work |
+| `contact.html` | Operating hours |
 
 Also worth doing:
 
-- Set `whatsapp` and `formEndpoint` in `assets/app.js`
+- Confirm the WhatsApp country code (see above)
+- Set `formEndpoint` so submissions arrive by email rather than via WhatsApp
 - Add a `sitemap.xml` and reference it from `robots.txt` once a real domain is live
-- Replace the placeholder background on `/about` with your own
 
 ## Local preview
 

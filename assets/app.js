@@ -2,16 +2,18 @@
    Everything you'll realistically need to change lives in CONFIG below. */
 
 const CONFIG = {
-  // Displayed on the site and used for tel: links.
-  phone: '0686851530',
+  // Used for tel: links. Displayed on the pages as 068 685 1537.
+  phone: '0686851537',
 
   // WhatsApp needs a FULL INTERNATIONAL number: country code + number, digits only,
-  // no leading zero and no "+". Example: a South African 068 685 1530 becomes
-  // '27686851530'; a Dutch 06 8685 1530 becomes '31686851530'.
+  // no leading zero and no "+".
   //
-  // While this is empty, every WhatsApp button quietly falls back to a phone call,
-  // so the site stays functional either way.
-  whatsapp: '',
+  // 27 is the South African dialling code, matching the 068 685 1537 format above.
+  // If FixPro is NOT in South Africa this is wrong and messages will go nowhere —
+  // swap 27 for your country code (e.g. 31 for the Netherlands).
+  //
+  // Set this to '' and every WhatsApp button quietly falls back to a phone call.
+  whatsapp: '27686851537',
 
   // Paste a Formspree ('https://formspree.io/f/xxxxxxxx') or Web3Forms endpoint here
   // to receive form submissions by email. While it's empty, the booking form falls
