@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visitor Dashboard — Voltwrench</title>
+<meta name="description" content="Visitor statistics for the Voltwrench website.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1E2939">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(80,80) rotate(-35) scale(1.05)">
+          <rect x="-65" y="-15" width="55" height="30" rx="15" fill="#F7F6F3"/>
+          <rect x="-12" y="-7" width="48" height="14" fill="#F7F6F3"/>
+          <polygon points="35,-7 35,7 67,0" fill="#F7F6F3"/>
+          <line x1="75" y1="-9" x2="84" y2="-17" stroke="#2DD9C4" stroke-width="6" stroke-linecap="round"/>
+          <line x1="79" y1="0" x2="90" y2="0" stroke="#2DD9C4" stroke-width="6" stroke-linecap="round"/>
+          <line x1="75" y1="9" x2="84" y2="17" stroke="#2DD9C4" stroke-width="6" stroke-linecap="round"/>
+        </g>
+      </svg>
+      Voltwrench
+    </a>
+    <div class="nav-cta" style="margin-left:auto;">
+      <a class="btn btn--ghost" href="/">Back to site</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section" style="padding-top:56px;">
+    <div class="container" id="dashboard">
+
+      <div class="section-head" style="margin-bottom:32px;">
+        <div class="eyebrow">Analytics</div>
+        <h1>Who's visiting the site</h1>
+        <p class="lead">
+          Visitor numbers for voltwrench.vercel.app — page views, where people came from,
+          and which pages they actually read.
+        </p>
+      </div>
+
+      <!-- Shown until CONFIG.analyticsCode is filled in. -->
+      <div data-when="unset" hidden>
+        <div class="callout callout--warn" style="margin-bottom:28px;">
+          <h4>Analytics isn't switched on yet</h4>
+          <p class="muted" style="font-size:14.5px;">
+            No tracking script is loading, so nothing is being recorded. Three steps to
+            start collecting data — it takes about two minutes.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <h3>Create the account</h3>
+            <p>Sign up free at <a href="https://www.goatcounter.com/signup" target="_blank" rel="noopener">goatcounter.com</a>. Pick a site code — <span class="mono">voltwrench</span> is the obvious one.</p>
+          </div>
+          <div class="step">
+            <h3>Add the code</h3>
+            <p>Open <span class="mono">assets/app.js</span> and set <span class="mono">analyticsCode</span> to that code. Nothing else needs changing.</p>
+          </div>
+          <div class="step">
+            <h3>Make it shareable</h3>
+            <p>In GoatCounter's settings, set the dashboard to public. The client can then view stats here without an account.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shown once analytics is configured. -->
+      <div data-when="set" hidden>
+        <div class="grid grid--2" style="margin-bottom:28px;">
+          <div class="card">
+            <h3>Live statistics</h3>
+            <p style="margin-bottom:20px;">
+              The full dashboard is hosted at
+              <span class="mono accent" data-stats-host></span> and updates in real time.
+            </p>
+            <a class="btn btn--accent" data-stats-link target="_blank" rel="noopener">Open full dashboard</a>
+          </div>
+          <div class="card">
+            <h3>What's counted</h3>
+            <ul class="card-list">
+              <li>Page views and unique visitors</li>
+              <li>Which pages get read, and for how long</li>
+              <li>Referrers — Google, WhatsApp, direct</li>
+              <li>Country, browser and screen size</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="padding:0; overflow:hidden;">
+          <iframe title="Live visitor statistics" style="width:100%; height:820px; border:0; display:block; background:#fff;"></iframe>
+        </div>
+
+        <p class="dim" style="margin-top:14px;">
+          Panel blank? GoatCounter only allows embedding when the dashboard is set to public
+          — use <a data-stats-link target="_blank" rel="noopener">the direct link</a> instead.
+        </p>
+      </div>
+
+      <div class="callout" style="margin-top:32px;">
+        <h4>A note on the numbers</h4>
+        <p class="muted" style="font-size:14.5px;">
+          No cookies are set and no personal data is stored, which is why the site needs no
+          cookie banner. The trade-off is that a returning visitor on a different device counts
+          twice. Treat the figures as a reliable trend, not a precise headcount — and expect
+          them to run lower than tools that track more aggressively.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:0; padding-top:0;">
+      <span>&copy; <span data-year>2026</span> Voltwrench. All rights reserved.</span>
+      <span><a href="/">Back to site</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>

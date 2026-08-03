@@ -1,4 +1,4 @@
-/* FixPro — shared site behaviour.
+/* Voltwrench — shared site behaviour.
    Everything you'll realistically need to change lives in CONFIG below. */
 
 const CONFIG = {
@@ -9,7 +9,7 @@ const CONFIG = {
   // no leading zero and no "+".
   //
   // 27 is the South African dialling code, matching the 068 685 1537 format above.
-  // If FixPro is NOT in South Africa this is wrong and messages will go nowhere —
+  // If Voltwrench is NOT in South Africa this is wrong and messages will go nowhere —
   // swap 27 for your country code (e.g. 31 for the Netherlands).
   //
   // Set this to '' and every WhatsApp button quietly falls back to a phone call.
@@ -24,7 +24,14 @@ const CONFIG = {
   // JavaScript and is safe to commit. It only permits submissions to the inbox
   // it was issued for. Leave empty for providers that key off the URL alone
   // (Formspree, Getform, Basin).
-  formAccessKey: '9677b1f9-bb03-47ca-a1df-e2d799cb8c86'
+  formAccessKey: '9677b1f9-bb03-47ca-a1df-e2d799cb8c86',
+
+  // GoatCounter site code — the subdomain part of https://<code>.goatcounter.com
+  // Sign up at goatcounter.com, then put just the code here (e.g. 'voltwrench').
+  //
+  // While it's empty no analytics script loads at all, and /dashboard shows
+  // setup instructions instead of stats.
+  analyticsCode: ''
 };
 
 /* ---------- helpers ---------- */
@@ -139,7 +146,7 @@ async function postToEndpoint(form, heading){
   // Give the email a useful subject. The contact form supplies its own via the
   // "subject" select, so only fall back to the form's heading when it's absent.
   if (!data.get('subject')) data.append('subject', heading);
-  data.append('from_name', 'FixPro website');
+  data.append('from_name', 'Voltwrench website');
 
   // So hitting reply in the inbox goes straight back to the customer.
   const email = data.get('email');
@@ -165,7 +172,7 @@ function initForms(){
   document.querySelectorAll('form[data-form]').forEach(form => {
     const status = form.querySelector('.form-status');
     const submit = form.querySelector('[type="submit"]');
-    const heading = form.getAttribute('data-message-heading') || 'New enquiry via the FixPro website';
+    const heading = form.getAttribute('data-message-heading') || 'New enquiry via the Voltwrench website';
 
     const say = (text, tone) => {
       if (!status) return;
@@ -261,6 +268,46 @@ function initQuickStart(){
   });
 }
 
+/* ---------- analytics ---------- */
+
+const analyticsBase = () =>
+  CONFIG.analyticsCode ? 'https://' + CONFIG.analyticsCode + '.goatcounter.com' : '';
+
+/* GoatCounter counts a pageview per visit. It sets no cookies and stores no
+   personal data, which is why the site needs no cookie banner. */
+function initAnalytics(){
+  if (!analyticsBase()) return;
+
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://gc.zgo.at/count.js';
+  s.setAttribute('data-goatcounter', analyticsBase() + '/count');
+  document.head.appendChild(s);
+}
+
+/* ---------- dashboard page ---------- */
+
+function initDashboard(){
+  const root = document.getElementById('dashboard');
+  if (!root) return;
+
+  const configured = !!analyticsBase();
+  root.querySelector('[data-when="unset"]').hidden = configured;
+  root.querySelector('[data-when="set"]').hidden = !configured;
+  if (!configured) return;
+
+  const base = analyticsBase();
+  root.querySelectorAll('[data-stats-link]').forEach(a => { a.href = base; });
+
+  const host = root.querySelector('[data-stats-host]');
+  if (host) host.textContent = base.replace('https://', '');
+
+  // Embed the live dashboard. GoatCounter only allows framing when the site is
+  // set to public, so a visible link sits underneath as the reliable route.
+  const frame = root.querySelector('iframe');
+  if (frame) frame.src = base;
+}
+
 /* ---------- boot ---------- */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -270,4 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initServicePrefill();
   initQuickStart();
+  initAnalytics();
+  initDashboard();
 });
