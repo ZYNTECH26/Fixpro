@@ -1,17 +1,20 @@
-/* FixPro — design system
-   Tokens carried over from the original coming-soon page so the two stay in sync. */
+/* MAHWITA Repairs — design system
+   Electrical palette: deep voltage navy, electric violet as the live accent,
+   amber as the spark. Kept in sync with the standalone coming-soon page. */
 
 :root{
-  --charcoal:#1E2939;
-  --charcoal-deep:#18212E;
-  --panel:#25344A;
-  --panel-soft:#2B3B53;
-  --offwhite:#F7F6F3;
-  --teal-deep:#0E8074;
-  --teal:#2DD9C4;
-  --gray:#98A7B7;
-  --gray-dim:#6D7C8C;
-  --border:rgba(45,217,196,0.28);
+  --ink:#0B0F1E;
+  --ink-deep:#070A15;
+  --ink-rgb:11,15,30;
+  --panel:#141A30;
+  --panel-soft:#1C2440;
+  --offwhite:#F3F4FA;
+  --volt-deep:#5B3FD9;
+  --volt:#9D8AFF;
+  --spark:#FFC93C;
+  --gray:#8E97B4;
+  --gray-dim:#626B87;
+  --border:rgba(157,138,255,0.28);
   --hairline:rgba(255,255,255,0.09);
   --danger:#FF8A80;
 
@@ -29,7 +32,7 @@ html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
-  background:var(--charcoal);
+  background:var(--ink);
   color:var(--offwhite);
   font-family:var(--font);
   font-size:16px;
@@ -39,7 +42,7 @@ body{
 
 img,svg{ max-width:100%; }
 
-a{ color:var(--teal); }
+a{ color:var(--volt); }
 
 .mono{ font-family:var(--mono); }
 
@@ -49,13 +52,13 @@ a{ color:var(--teal); }
 
 .section{ padding:84px 0; }
 .section--tight{ padding:56px 0; }
-.section--alt{ background:var(--charcoal-deep); border-block:1px solid var(--hairline); }
+.section--alt{ background:var(--ink-deep); border-block:1px solid var(--hairline); }
 
 .section-head{ max-width:620px; margin-bottom:44px; }
 .section-head--center{ margin-inline:auto; text-align:center; }
 
 .eyebrow{
-  font-size:11.5px; letter-spacing:.22em; font-weight:700; color:var(--teal);
+  font-size:11.5px; letter-spacing:.22em; font-weight:700; color:var(--volt);
   text-transform:uppercase; margin-bottom:14px;
 }
 
@@ -72,7 +75,7 @@ p:last-child{ margin-bottom:0; }
 .muted{ color:var(--gray); }
 .dim{ color:var(--gray-dim); font-size:14px; }
 
-.accent{ color:var(--teal); }
+.accent{ color:var(--volt); }
 
 .grid{ display:grid; gap:20px; }
 .grid--2{ grid-template-columns:repeat(2,1fr); }
@@ -83,7 +86,7 @@ p:last-child{ margin-bottom:0; }
 
 .skip{
   position:absolute; left:-9999px; top:0; z-index:100;
-  background:var(--teal); color:var(--charcoal); padding:12px 18px;
+  background:var(--volt); color:var(--ink); padding:12px 18px;
   border-radius:0 0 var(--radius-sm) 0; font-weight:700;
 }
 .skip:focus{ left:0; }
@@ -92,7 +95,7 @@ p:last-child{ margin-bottom:0; }
 
 .site-header{
   position:sticky; top:0; z-index:50;
-  background:rgba(30,41,57,0.88);
+  background:rgba(var(--ink-rgb),0.88);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--hairline);
 }
@@ -112,7 +115,7 @@ p:last-child{ margin-bottom:0; }
   padding:8px 13px; border-radius:var(--radius-sm);
 }
 .nav-links a:hover{ color:var(--offwhite); background:rgba(255,255,255,0.05); }
-.nav-links a[aria-current="page"]{ color:var(--teal); }
+.nav-links a[aria-current="page"]{ color:var(--volt); }
 
 .nav-cta{ display:flex; gap:10px; align-items:center; flex-shrink:0; }
 
@@ -133,14 +136,14 @@ p:last-child{ margin-bottom:0; }
 }
 .btn svg{ width:16px; height:16px; flex-shrink:0; }
 
-.btn--primary{ background:var(--teal-deep); color:var(--offwhite); }
-.btn--primary:hover{ background:#0b6b60; color:var(--offwhite); }
+.btn--primary{ background:var(--volt-deep); color:var(--offwhite); }
+.btn--primary:hover{ background:#4A31B8; color:var(--offwhite); }
 
-.btn--accent{ background:var(--teal); color:#10202C; }
-.btn--accent:hover{ background:#4EE3D1; color:#10202C; }
+.btn--accent{ background:var(--volt); color:#0B0F1E; }
+.btn--accent:hover{ background:#B9AAFF; color:#0B0F1E; }
 
 .btn--ghost{ background:transparent; border-color:var(--hairline); color:var(--offwhite); }
-.btn--ghost:hover{ border-color:var(--border); background:rgba(45,217,196,0.07); color:var(--offwhite); }
+.btn--ghost:hover{ border-color:var(--border); background:rgba(157,138,255,0.07); color:var(--offwhite); }
 
 .btn--lg{ padding:16px 26px; font-size:15.5px; }
 .btn--block{ width:100%; }
@@ -150,7 +153,7 @@ p:last-child{ margin-bottom:0; }
 .btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
 
 :where(a,button,input,select,textarea,summary):focus-visible{
-  outline:2px solid var(--teal); outline-offset:2px; border-radius:4px;
+  outline:2px solid var(--volt); outline-offset:2px; border-radius:4px;
 }
 
 /* ---------- hero ---------- */
@@ -158,8 +161,8 @@ p:last-child{ margin-bottom:0; }
 .hero{
   position:relative; overflow:hidden;
   background:
-    radial-gradient(ellipse 900px 560px at 50% -18%, rgba(45,217,196,0.12), transparent 62%),
-    var(--charcoal);
+    radial-gradient(ellipse 900px 560px at 50% -18%, rgba(157,138,255,0.12), transparent 62%),
+    var(--ink);
   padding:96px 0 84px;
 }
 .hero-inner{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
@@ -168,7 +171,7 @@ p:last-child{ margin-bottom:0; }
 
 .hero-points{ list-style:none; margin:32px 0 0; padding:0; display:grid; gap:11px; }
 .hero-points li{ display:flex; gap:11px; align-items:flex-start; font-size:14.5px; color:var(--gray); }
-.hero-points svg{ width:17px; height:17px; flex-shrink:0; margin-top:2px; color:var(--teal); }
+.hero-points svg{ width:17px; height:17px; flex-shrink:0; margin-top:2px; color:var(--volt); }
 
 .hero-card{
   background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
@@ -188,8 +191,8 @@ p:last-child{ margin-bottom:0; }
 
 .card-icon{
   width:42px; height:42px; border-radius:10px;
-  background:rgba(45,217,196,0.11); border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center; margin-bottom:18px; color:var(--teal);
+  background:rgba(157,138,255,0.11); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; margin-bottom:18px; color:var(--volt);
 }
 .card-icon svg{ width:21px; height:21px; }
 
@@ -197,7 +200,7 @@ p:last-child{ margin-bottom:0; }
 .card-list li{ font-size:14px; color:var(--gray); padding-left:18px; position:relative; }
 .card-list li::before{
   content:''; position:absolute; left:0; top:8px;
-  width:6px; height:6px; border-radius:50%; background:var(--teal); opacity:.7;
+  width:6px; height:6px; border-radius:50%; background:var(--volt); opacity:.7;
 }
 
 /* Main column + sidebar, used on the booking and contact pages. */
@@ -208,19 +211,21 @@ p:last-child{ margin-bottom:0; }
 
 .steps{ counter-reset:step; display:grid; gap:20px; grid-template-columns:repeat(3,1fr); }
 .step{ position:relative; padding-top:8px; }
+/* Step numbers take the amber spark rather than the violet, so the sequence
+   reads as a second signal instead of blending into every other accent. */
 .step::before{
   counter-increment:step; content:counter(step);
   display:flex; align-items:center; justify-content:center;
   width:38px; height:38px; border-radius:50%; margin-bottom:16px;
-  background:rgba(45,217,196,0.11); border:1px solid var(--border);
-  color:var(--teal); font-family:var(--mono); font-weight:700; font-size:15px;
+  background:rgba(255,201,60,0.12); border:1px solid rgba(255,201,60,0.38);
+  color:var(--spark); font-family:var(--mono); font-weight:700; font-size:15px;
 }
 .step p{ color:var(--gray); font-size:14.5px; }
 
 /* ---------- callout / notice ---------- */
 
 .callout{
-  background:rgba(45,217,196,0.07); border:1px solid var(--border);
+  background:rgba(157,138,255,0.07); border:1px solid var(--border);
   border-radius:var(--radius); padding:22px 24px;
 }
 .callout--warn{ background:rgba(255,138,128,0.07); border-color:rgba(255,138,128,0.3); }
@@ -229,8 +234,8 @@ p:last-child{ margin-bottom:0; }
 
 .cta-band{
   background:
-    radial-gradient(ellipse 700px 300px at 50% 120%, rgba(45,217,196,0.16), transparent 65%),
-    var(--charcoal-deep);
+    radial-gradient(ellipse 700px 300px at 50% 120%, rgba(157,138,255,0.16), transparent 65%),
+    var(--ink-deep);
   border-block:1px solid var(--hairline);
   text-align:center; padding:76px 0;
 }
@@ -244,7 +249,7 @@ p:last-child{ margin-bottom:0; }
 .field{ display:grid; gap:7px; }
 .field label{ font-size:13.5px; font-weight:600; color:var(--offwhite); }
 .field .hint{ font-size:12.5px; color:var(--gray-dim); }
-.field .req{ color:var(--teal); }
+.field .req{ color:var(--volt); }
 
 .field input,.field select,.field textarea{
   width:100%; background:rgba(255,255,255,0.05);
@@ -252,12 +257,12 @@ p:last-child{ margin-bottom:0; }
   color:var(--offwhite); padding:12px 14px; font-size:14.5px; font-family:var(--font);
 }
 .field textarea{ resize:vertical; min-height:110px; }
-.field input::placeholder,.field textarea::placeholder{ color:#63707E; }
+.field input::placeholder,.field textarea::placeholder{ color:#5A6382; }
 .field select{ appearance:none; cursor:pointer; }
 .field select option{ background:var(--panel); color:var(--offwhite); }
 
 .field input:focus,.field select:focus,.field textarea:focus{
-  outline:2px solid var(--teal); outline-offset:1px; border-color:transparent;
+  outline:2px solid var(--volt); outline-offset:1px; border-color:transparent;
 }
 .field input[aria-invalid="true"],.field select[aria-invalid="true"],.field textarea[aria-invalid="true"]{
   border-color:var(--danger);
@@ -265,7 +270,7 @@ p:last-child{ margin-bottom:0; }
 .field .error{ font-size:12.5px; color:var(--danger); min-height:1em; }
 
 .form-status{ font-size:14px; min-height:1.3em; margin:0; }
-.form-status[data-tone="ok"]{ color:var(--teal); }
+.form-status[data-tone="ok"]{ color:var(--volt); }
 .form-status[data-tone="err"]{ color:var(--danger); }
 
 fieldset{ border:0; padding:0; margin:0; }
@@ -284,7 +289,7 @@ legend{ font-size:13.5px; font-weight:600; padding:0; margin-bottom:7px; }
   display:flex; justify-content:space-between; align-items:center; gap:16px;
 }
 .faq summary::-webkit-details-marker{ display:none; }
-.faq summary::after{ content:'+'; color:var(--teal); font-size:20px; font-weight:400; line-height:1; }
+.faq summary::after{ content:'+'; color:var(--volt); font-size:20px; font-weight:400; line-height:1; }
 .faq details[open] summary::after{ content:'\2212'; }
 .faq details > p{ color:var(--gray); font-size:14.5px; padding-bottom:20px; margin:0; }
 
@@ -293,19 +298,19 @@ legend{ font-size:13.5px; font-weight:600; padding:0; margin-bottom:7px; }
 .contact-list{ list-style:none; margin:0; padding:0; display:grid; gap:2px; }
 .contact-list li{ display:flex; gap:14px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--hairline); }
 .contact-list li:last-child{ border-bottom:0; }
-.contact-list svg{ width:19px; height:19px; color:var(--teal); flex-shrink:0; margin-top:3px; }
+.contact-list svg{ width:19px; height:19px; color:var(--volt); flex-shrink:0; margin-top:3px; }
 .contact-list .label{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gray-dim); font-weight:600; margin-bottom:3px; }
 .contact-list a{ text-decoration:none; font-weight:600; }
 .contact-list a:hover{ text-decoration:underline; }
 
 /* ---------- footer ---------- */
 
-.site-footer{ background:var(--charcoal-deep); border-top:1px solid var(--hairline); padding:56px 0 32px; }
+.site-footer{ background:var(--ink-deep); border-top:1px solid var(--hairline); padding:56px 0 32px; }
 .footer-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:40px; margin-bottom:40px; }
 .footer-grid h4{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gray-dim); margin-bottom:14px; }
 .footer-links{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
 .footer-links a{ color:var(--gray); text-decoration:none; font-size:14.5px; }
-.footer-links a:hover{ color:var(--teal); }
+.footer-links a:hover{ color:var(--volt); }
 .footer-about p{ color:var(--gray); font-size:14.5px; max-width:38ch; margin-top:16px; }
 .footer-bottom{
   border-top:1px solid var(--hairline); padding-top:24px;
@@ -368,7 +373,7 @@ legend{ font-size:13.5px; font-weight:600; padding:0; margin-bottom:7px; }
   .nav-links{
     display:none; position:absolute; left:0; right:0; top:68px;
     flex-direction:column; align-items:stretch; gap:2px; margin:0; padding:12px 16px 18px;
-    background:var(--charcoal-deep); border-bottom:1px solid var(--hairline);
+    background:var(--ink-deep); border-bottom:1px solid var(--hairline);
   }
   .nav-links.is-open{ display:flex; }
   .nav-links a{ padding:12px 14px; font-size:15.5px; }
@@ -380,6 +385,14 @@ legend{ font-size:13.5px; font-weight:600; padding:0; margin-bottom:7px; }
 
 @media (max-width:560px){
   .container{ padding:0 18px; }
+
+  /* "MAHWITA Repairs" is a long wordmark. At default header sizes the brand,
+     CTA and menu button together overflow a 390px screen, so scale them down. */
+  .nav{ gap:12px; }
+  .brand{ font-size:16px; gap:8px; }
+  .brand svg{ width:26px; height:26px; }
+  .nav-cta .btn{ padding:10px 12px; font-size:13px; }
+
   .grid--2,.grid--3,.grid--4{ grid-template-columns:1fr; }
   .form-row{ grid-template-columns:1fr; }
   .footer-grid{ grid-template-columns:1fr; gap:32px; }

@@ -1,6 +1,6 @@
-# Voltwrench
+# MAHWITA Repairs
 
-Marketing and booking site for Voltwrench, a domestic appliance repair business.
+Marketing and booking site for MAHWITA Repairs, a domestic appliance repair business.
 Static HTML, CSS and vanilla JavaScript — no build step, no dependencies.
 
 ## Pages
@@ -18,6 +18,26 @@ Static HTML, CSS and vanilla JavaScript — no build step, no dependencies.
 
 Shared assets live in `assets/` — `styles.css` (all styling), `app.js` (all
 behaviour), `favicon.svg`, `og-image.png` (social preview card).
+
+## Design
+
+Electrical palette, defined as tokens at the top of `assets/styles.css`:
+
+| Token | Value | Role |
+|---|---|---|
+| `--ink` | `#0B0F1E` | Page background — deep voltage navy |
+| `--ink-deep` | `#070A15` | Alternating section bands |
+| `--panel` | `#141A30` | Cards, form fields, header |
+| `--volt` | `#9D8AFF` | Electric violet — the live accent, links, icons |
+| `--volt-deep` | `#5B3FD9` | Solid buttons with light text |
+| `--spark` | `#FFC93C` | Amber — step numbers only, a deliberate second signal |
+| `--offwhite` | `#F3F4FA` | Body text |
+
+Change a token and it propagates everywhere. The WhatsApp button keeps
+WhatsApp's own green on purpose — recolouring it costs recognition.
+
+Amber is used sparingly. If you spread it further, check contrast: it needs dark
+text on top, never light.
 
 ## Configuration
 
@@ -44,7 +64,7 @@ Must be the **full international number** — country code, digits only, no
 leading zero and no `+`.
 
 `27` is the South African dialling code, chosen to match the `068 685 1537`
-number format. **If Voltwrench is not in South Africa this is wrong** and
+number format. **If MAHWITA Repairs is not in South Africa this is wrong** and
 WhatsApp messages will go nowhere — replace `27` with the correct country code.
 
 Set it to `''` and every WhatsApp button falls back to a phone call and
@@ -71,7 +91,7 @@ browser's native bubbles fire first and the submit handler never sees the event.
 **Currently empty — no analytics are being collected.**
 
 Sign up free at [goatcounter.com](https://www.goatcounter.com/signup), choose a
-site code (`voltwrench` is the obvious one), and set `analyticsCode` to just that
+site code (`mahwita` is the obvious one), and set `analyticsCode` to just that
 code — not the full URL. That single value switches on tracking across every page
 *and* populates `/dashboard`.
 
@@ -97,13 +117,13 @@ In place:
 ### ⚠ The site URL is assumed
 
 Every absolute URL — canonical tags, `og:url`, sitemap entries, JSON-LD — uses
-`https://voltwrench.vercel.app`. **If your Vercel project resolves to a different
+`https://mahwita-repairs.vercel.app`. **If your Vercel project resolves to a different
 subdomain, these are all wrong** and Google will index nothing useful.
 
 Check the real URL in the Vercel dashboard, then find every occurrence:
 
 ```
-grep -rl 'voltwrench.vercel.app' . --exclude-dir=.git
+grep -rl 'mahwita-repairs.vercel.app' . --exclude-dir=.git
 ```
 
 and replace it. Do the same when you move to a custom domain.
@@ -149,8 +169,9 @@ Also outstanding:
   arrives.** The payload is verified field by field, but Web3Forms sits behind
   Cloudflare, which challenges automated requests — end-to-end delivery has not
   been confirmed from a live browser.
-- Verify the `voltwrench.vercel.app` URL is correct (see above)
-- Check the Voltwrench name is free to use — no trademark or domain check was done
+- Verify the `mahwita-repairs.vercel.app` URL is correct (see above). Every
+  absolute URL in the SEO markup assumes the Vercel project is named
+  `mahwita-repairs` — if you name it anything else, they are all wrong.
 
 The `.tbd` style is kept for future placeholders — wrap anything unfinished in
 `<span class="tbd">` and it renders as an obvious red chip:

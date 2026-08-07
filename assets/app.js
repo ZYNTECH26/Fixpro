@@ -1,4 +1,4 @@
-/* Voltwrench — shared site behaviour.
+/* MAHWITA Repairs — shared site behaviour.
    Everything you'll realistically need to change lives in CONFIG below. */
 
 const CONFIG = {
@@ -9,7 +9,7 @@ const CONFIG = {
   // no leading zero and no "+".
   //
   // 27 is the South African dialling code, matching the 068 685 1537 format above.
-  // If Voltwrench is NOT in South Africa this is wrong and messages will go nowhere —
+  // If MAHWITA Repairs is NOT in South Africa this is wrong and messages will go nowhere —
   // swap 27 for your country code (e.g. 31 for the Netherlands).
   //
   // Set this to '' and every WhatsApp button quietly falls back to a phone call.
@@ -27,7 +27,7 @@ const CONFIG = {
   formAccessKey: '9677b1f9-bb03-47ca-a1df-e2d799cb8c86',
 
   // GoatCounter site code — the subdomain part of https://<code>.goatcounter.com
-  // Sign up at goatcounter.com, then put just the code here (e.g. 'voltwrench').
+  // Sign up at goatcounter.com, then put just the code here (e.g. 'mahwita').
   //
   // While it's empty no analytics script loads at all, and /dashboard shows
   // setup instructions instead of stats.
@@ -146,7 +146,7 @@ async function postToEndpoint(form, heading){
   // Give the email a useful subject. The contact form supplies its own via the
   // "subject" select, so only fall back to the form's heading when it's absent.
   if (!data.get('subject')) data.append('subject', heading);
-  data.append('from_name', 'Voltwrench website');
+  data.append('from_name', 'MAHWITA Repairs website');
 
   // So hitting reply in the inbox goes straight back to the customer.
   const email = data.get('email');
@@ -172,7 +172,7 @@ function initForms(){
   document.querySelectorAll('form[data-form]').forEach(form => {
     const status = form.querySelector('.form-status');
     const submit = form.querySelector('[type="submit"]');
-    const heading = form.getAttribute('data-message-heading') || 'New enquiry via the Voltwrench website';
+    const heading = form.getAttribute('data-message-heading') || 'New enquiry via the MAHWITA Repairs website';
 
     const say = (text, tone) => {
       if (!status) return;

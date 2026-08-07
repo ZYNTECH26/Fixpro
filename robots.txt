@@ -5,4 +5,4 @@ Allow: /
 Disallow: /dashboard
 Disallow: /coming-soon
 
-Sitemap: https://voltwrench.vercel.app/sitemap.xml
+Sitemap: https://mahwita-repairs.vercel.app/sitemap.xml

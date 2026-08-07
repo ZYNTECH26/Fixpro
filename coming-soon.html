@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon — Voltwrench</title>
+<title>Coming Soon — MAHWITA Repairs</title>
 <!-- Superseded by the live site at /. Kept for reference; excluded from search. -->
 <meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -12,21 +12,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --charcoal:#1E2939;
-    --panel:#25344A;
-    --offwhite:#F7F6F3;
-    --teal-deep:#0E8074;
-    --teal:#2DD9C4;
-    --gray:#98A7B7;
-    --border:rgba(45,217,196,0.28);
+    --ink:#0B0F1E;
+    --panel:#141A30;
+    --offwhite:#F3F4FA;
+    --volt-deep:#5B3FD9;
+    --volt:#9D8AFF;
+    --gray:#8E97B4;
+    --border:rgba(157,138,255,0.28);
   }
   *{ box-sizing:border-box; }
   html,body{ height:100%; }
   body{
     margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
     background:
-      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(45,217,196,0.10), transparent 60%),
-      var(--charcoal);
+      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(157,138,255,0.10), transparent 60%),
+      var(--ink);
     color:var(--offwhite);
     font-family:'Inter',system-ui,-apple-system,sans-serif;
     padding:64px 20px;
@@ -39,14 +39,14 @@
   .icon{ width:64px; height:64px; margin:0 auto 22px; display:block; }
 
   .eyebrow{
-    font-size:11.5px; letter-spacing:.22em; font-weight:700; color:var(--teal);
+    font-size:11.5px; letter-spacing:.22em; font-weight:700; color:var(--volt);
     text-transform:uppercase; margin-bottom:16px;
   }
   h1{
     font-size:clamp(26px,6vw,44px); line-height:1.18; font-weight:800; letter-spacing:-0.02em;
     margin:0 0 16px;
   }
-  h1 .accent{ color:var(--teal); }
+  h1 .accent{ color:var(--volt); }
   .sub{
     font-size:16px; line-height:1.6; color:var(--gray); max-width:440px; margin:0 auto 44px;
   }
@@ -57,23 +57,23 @@
   }
   .panel{
     display:inline-flex; background:var(--panel); border:1px solid var(--border);
-    border-radius:14px; padding:22px 6px; box-shadow:0 0 0 rgba(45,217,196,0.25);
+    border-radius:14px; padding:22px 6px; box-shadow:0 0 0 rgba(157,138,255,0.25);
     animation:glow 3.2s ease-in-out infinite;
   }
   @keyframes glow{
-    0%,100%{ box-shadow:0 0 18px -4px rgba(45,217,196,0.18); }
-    50%{ box-shadow:0 0 30px -2px rgba(45,217,196,0.38); }
+    0%,100%{ box-shadow:0 0 18px -4px rgba(157,138,255,0.18); }
+    50%{ box-shadow:0 0 30px -2px rgba(157,138,255,0.38); }
   }
   .seg{ width:82px; padding:0 6px; position:relative; }
   .seg + .seg{ border-left:1px solid rgba(255,255,255,0.08); }
   .seg .num{
-    font-size:clamp(30px,7vw,44px); font-weight:700; color:var(--teal);
-    text-shadow:0 0 18px rgba(45,217,196,0.45); letter-spacing:.02em; font-variant-numeric:tabular-nums;
+    font-size:clamp(30px,7vw,44px); font-weight:700; color:var(--volt);
+    text-shadow:0 0 18px rgba(157,138,255,0.45); letter-spacing:.02em; font-variant-numeric:tabular-nums;
   }
   .seg .unit{ font-size:10px; letter-spacing:.14em; color:var(--gray); text-transform:uppercase; margin-top:6px; }
 
   #launched{ display:none; }
-  #launched .num{ font-size:clamp(26px,5vw,34px); color:var(--teal); font-weight:700; }
+  #launched .num{ font-size:clamp(26px,5vw,34px); color:var(--volt); font-weight:700; }
 
   .notify{ margin-top:46px; }
   .notify-label{ display:block; font-size:13px; color:var(--gray); margin-bottom:12px; }
@@ -82,19 +82,19 @@
     flex:1 1 auto; min-width:0; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14);
     color:var(--offwhite); border-radius:8px; padding:12px 14px; font-size:14px; font-family:'Inter',sans-serif;
   }
-  .notify-row input::placeholder{ color:#63707E; }
-  .notify-row input:focus{ outline:2px solid var(--teal); outline-offset:1px; border-color:transparent; }
+  .notify-row input::placeholder{ color:#5A6382; }
+  .notify-row input:focus{ outline:2px solid var(--volt); outline-offset:1px; border-color:transparent; }
   .notify-row button{
-    background:var(--teal-deep); color:var(--offwhite); border:none; border-radius:8px;
+    background:var(--volt-deep); color:var(--offwhite); border:none; border-radius:8px;
     padding:12px 18px; font-family:'Inter',sans-serif; font-weight:700; font-size:14px; cursor:pointer; flex-shrink:0;
   }
-  .notify-row button:hover{ background:#0b6b60; }
-  .notify-row button:focus-visible,.notify-row input:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
-  .notify-message{ min-height:1.2em; font-size:13px; color:var(--teal); margin:12px 0 0; }
+  .notify-row button:hover{ background:#4A31B8; }
+  .notify-row button:focus-visible,.notify-row input:focus-visible{ outline:2px solid var(--volt); outline-offset:2px; }
+  .notify-message{ min-height:1.2em; font-size:13px; color:var(--volt); margin:12px 0 0; }
 
   footer{ margin-top:56px; font-size:13.5px; color:var(--gray); }
   footer a{ color:var(--offwhite); text-decoration:none; border-bottom:1px solid var(--border); }
-  footer a:hover{ color:var(--teal); }
+  footer a:hover{ color:var(--volt); }
 
   @media (max-width:480px){
     .seg{ width:64px; }
@@ -111,17 +111,17 @@
   <div class="wrap">
     <svg class="icon" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g transform="translate(80,80) rotate(-35) scale(1.05)">
-        <rect x="-65" y="-15" width="55" height="30" rx="15" fill="#F7F6F3"/>
-        <rect x="-12" y="-7" width="48" height="14" fill="#F7F6F3"/>
-        <polygon points="35,-7 35,7 67,0" fill="#F7F6F3"/>
-        <line x1="75" y1="-9" x2="84" y2="-17" stroke="#2DD9C4" stroke-width="6" stroke-linecap="round"/>
-        <line x1="79" y1="0" x2="90" y2="0" stroke="#2DD9C4" stroke-width="6" stroke-linecap="round"/>
-        <line x1="75" y1="9" x2="84" y2="17" stroke="#2DD9C4" stroke-width="6" stroke-linecap="round"/>
+        <rect x="-65" y="-15" width="55" height="30" rx="15" fill="#F3F4FA"/>
+        <rect x="-12" y="-7" width="48" height="14" fill="#F3F4FA"/>
+        <polygon points="35,-7 35,7 67,0" fill="#F3F4FA"/>
+        <line x1="75" y1="-9" x2="84" y2="-17" stroke="#9D8AFF" stroke-width="6" stroke-linecap="round"/>
+        <line x1="79" y1="0" x2="90" y2="0" stroke="#9D8AFF" stroke-width="6" stroke-linecap="round"/>
+        <line x1="75" y1="9" x2="84" y2="17" stroke="#9D8AFF" stroke-width="6" stroke-linecap="round"/>
       </g>
     </svg>
 
     <div class="eyebrow">Coming soon</div>
-    <h1>Voltwrench's new site launches at <span class="accent">midnight</span></h1>
+    <h1>The new MAHWITA Repairs site launches at <span class="accent">midnight</span></h1>
     <p class="sub">Request service, get quotes, and book appointments online — starting tonight.</p>
 
     <div id="countdown">
@@ -148,7 +148,7 @@
     </div>
 
     <footer>
-      The site is live — <a href="/">visit Voltwrench</a>.<br>
+      The site is live — <a href="/">visit MAHWITA Repairs</a>.<br>
       Appliance emergency? Call <a href="tel:0686851537">068 685 1537</a> — we're already answering.
     </footer>
   </div>
@@ -190,7 +190,7 @@
       msg.style.color = '#FF8A80';
       return;
     }
-    msg.style.color = 'var(--teal)';
+    msg.style.color = 'var(--volt)';
     msg.textContent = "Thanks — we'll email you the moment we're live.";
     input.value = '';
     input.disabled = true;
